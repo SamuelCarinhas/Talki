@@ -1,4 +1,6 @@
 * {
+  --navbar-height: 5rem;
+  font-family: 'Outfit', serif;
   padding: 0;
   margin: 0;
 }
