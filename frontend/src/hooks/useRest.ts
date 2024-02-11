@@ -5,6 +5,7 @@ export const useRest = () => {
     const { user} = useUser()
 
     const api = 'https://auth.api.samuelcarinhas.com'
+    const host = "http://localhost:5173"
 
     const post = (path: string, body: object) =>
         fetch(`${api}${path}`, {
@@ -25,5 +26,5 @@ export const useRest = () => {
             }
         })
 
-    return { post, validate };
+    return { host, post, validate };
 };

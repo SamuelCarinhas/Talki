@@ -76,12 +76,16 @@ function Login() {
                     break;
             }
             setWaiting(false)
+        }).catch(() => {
+            setPasswordError('Server error')
+            setUsernameError('Server error')
+            setWaiting(false)
         })
     }
 
     return (
         user ? <Navigate to={"/"} />
-        :
+            :
         <Page>
             <div className={"login"}>
                 <div className={"login-container"}>
@@ -102,11 +106,11 @@ function Login() {
                             name={ "Password" }
                             text={ password }
                             type={"password"}
-                            extra={ <LinkText link={"awd"} text={"Forgot Password?"}/> }
+                            extra={ <LinkText link={"/forgot-password"} text={"Forgot Password?"}/> }
                             error={ passwordError }
                             setError={ setPasswordError }/>
                         <Button text={ "Sign In" } onClick={ handleLogin }/>
-                        <span> Don't have an account? <LinkText text={"Sign Up"} link={"teste"}/></span>
+                        <span> Don't have an account? <LinkText text={"Sign Up"} link={"/signup"}/></span>
                     </div>
                     <div className={"login-image"}>
                         <img
