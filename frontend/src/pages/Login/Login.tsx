@@ -7,12 +7,17 @@ import React, { useRef, useState } from "react";
 import { useRest } from "../../hooks/useRest.ts";
 
 import { AiOutlineLoading } from "react-icons/ai";
+import {useAuth} from "../../hooks/useAuth.ts";
+import {useUser} from "../../hooks/useUser.ts";
+import {Navigate} from "react-router-dom";
 
 function Login() {
 
     const [waiting, setWaiting] = useState<boolean>(false);
 
     const { post } = useRest();
+    const { login } = useAuth();
+    const { user } = useUser();
 
     const username = useRef<string>("");
     const password = useRef<string>("");
@@ -57,6 +62,13 @@ function Login() {
                 case 200:
                     setPasswordError(null)
                     setUsernameError(null)
+                    login({
+                        email: json.email,
+                        username: json.username,
+                        accessToken: json.accessToken,
+                        refreshToken: json.refreshToken,
+                        role: json.role
+                    })
                     break;
                 default:
                     setPasswordError('Server error')
@@ -68,6 +80,8 @@ function Login() {
     }
 
     return (
+        user ? <Navigate to={"/"} />
+        :
         <Page>
             <div className={"login"}>
                 <div className={"login-container"}>

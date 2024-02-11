@@ -11,7 +11,7 @@ export const useRest = () => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': user ? user.authToken : ''
+                'Authorization': user ? user.accessToken : ''
             },
             body: JSON.stringify(body)
         })
