@@ -24,7 +24,7 @@ function Navbar() {
                     to: '/chat'
                 },
                 {
-                    name: 'Sign out',
+                    name: 'Sign Out',
                     to: '/signout'
                 }
             ])
@@ -39,7 +39,7 @@ function Navbar() {
                     to: '/chat'
                 },
                 {
-                    name: 'Sign in',
+                    name: 'Sign In',
                     to: '/signin'
                 }
             ])

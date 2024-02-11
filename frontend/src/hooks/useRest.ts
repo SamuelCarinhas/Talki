@@ -16,5 +16,14 @@ export const useRest = () => {
             body: JSON.stringify(body)
         })
 
-    return { post };
+    const validate = (path: string, validateToken: string) =>
+        fetch(`${api}${path}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': validateToken
+            }
+        })
+
+    return { post, validate };
 };
