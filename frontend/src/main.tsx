@@ -7,11 +7,13 @@ import Home from "./pages/Home/Home.tsx";
 import Logout from "./pages/Logout/Logout.tsx";
 import Verify from "./pages/Verify/Verify.tsx";
 import Register from "./pages/Register/Register.tsx";
+import Chat from "./pages/Chat/Chat.tsx";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <AuthProvider>
         <BrowserRouter>
             <Routes>
+                <Route path={'/chat'} element={ <Chat /> }/>
                 <Route path={'/signin'} element={ <Login /> }/>
                 <Route path={'/signup'} element={ <Register /> }/>
                 <Route path={'/signout'} element={ <Logout /> }/>/
