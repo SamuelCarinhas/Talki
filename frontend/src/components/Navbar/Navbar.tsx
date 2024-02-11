@@ -19,7 +19,7 @@ function Navbar() {
     return (
         <div className={"navbar"}>
             {
-                items.map(item => <NavbarItem name={ item.name }/>)
+                items.map((item, index) => <NavbarItem key={index} name={ item.name }/>)
             }
         </div>
     )

@@ -3,8 +3,12 @@ import Page from "../../containers/Page/Page.tsx";
 import TextInput from "../../components/TextInput/TextInput.tsx";
 import LinkText from "../../components/LinkText/LinkText.tsx";
 import Button from "../../components/Button/Button.tsx";
+import { useState } from "react";
 
 function Login() {
+
+    const [passwordError, setPasswordError] = useState<string | null>("Incorrect password");
+
     return (
         <Page>
             <div className={"login"}>
@@ -14,7 +18,7 @@ function Login() {
                         <TextInput name={ "Username or email" }/>
                         <TextInput name={ "Password" } type={"password"} extra={
                             <LinkText link={"awd"} text={"Forgot Password?"}/>
-                        }/>
+                        } error={ passwordError } setError={ setPasswordError }/>
                         <Button text={ "Sign In" } onClick={() => alert(1)}/>
                         <span> Don't have an account? <LinkText text={"Sign Up"} link={"teste"}/></span>
                     </div>
