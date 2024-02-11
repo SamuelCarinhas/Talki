@@ -1,0 +1,23 @@
+.button {
+    user-select: none;
+    height: 3rem;
+    width: 100%;
+    color: #fff;
+    border-radius: 25px;
+    background-color: #f39a51;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: #e87612;
+}
+
+.button:active {
+    cursor: pointer;
+    box-shadow: -0.1rem -0.1rem 1px #888888;
+    transform: translateY(0.1rem) translateX(0.1rem);
+}
