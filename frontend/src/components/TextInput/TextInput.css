@@ -1,0 +1,21 @@
+.text-input {
+    width: 100%;
+    color: #9a9ba0;
+}
+
+.text-input input {
+    all: unset;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    height: 3rem;
+    background-color: #edf0f5;
+    border-radius: 15px;
+}
+
+.text-input-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
