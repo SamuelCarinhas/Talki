@@ -12,7 +12,7 @@ function NavbarItem(props: INavbarItem) {
 
     return (
         <div className={"navbar-item"} onClick={ handleClick }>
-            <h1> { props.name } </h1>
+            <h2> { props.name } </h2>
         </div>
     )
 }
