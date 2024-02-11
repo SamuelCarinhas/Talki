@@ -1,10 +1,17 @@
 import './TextInput.css'
 import ITextInput from "./ITextInput.ts";
+import React from "react";
 
 function TextInput(props: ITextInput) {
 
     function handleClick() {
         if(props.setError)
+            props.setError(null)
+    }
+
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+        props.text.current = event.target.value
+        if(props.error && props.setError)
             props.setError(null)
     }
 
@@ -16,7 +23,12 @@ function TextInput(props: ITextInput) {
                     props.extra && props.extra
                 }
             </div>
-            <input className={props.error ? "text-input-error" : ""} type={props.type || "text"} onClick={ handleClick }/>
+            <input
+                className={props.error ? "text-input-error" : ""}
+                type={props.type || "text"}
+                onClick={ handleClick }
+                onChange={ handleChange }
+            />
             {
                 props.error && <span className={props.error ? "text-input-error" : ""}> {props.error} </span>
             }
