@@ -1,0 +1,9 @@
+.link-text {
+    all: unset;
+    color: #f39a51
+}
+
+.link-text:hover {
+    color: #e87612;
+    cursor: pointer;
+}
