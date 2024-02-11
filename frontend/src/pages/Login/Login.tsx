@@ -3,10 +3,14 @@ import Page from "../../containers/Page/Page.tsx";
 import TextInput from "../../components/TextInput/TextInput.tsx";
 import LinkText from "../../components/LinkText/LinkText.tsx";
 import Button from "../../components/Button/Button.tsx";
-import React, {useRef, useState} from "react";
-import {useRest} from "../../hooks/useRest.ts";
+import React, { useRef, useState } from "react";
+import { useRest } from "../../hooks/useRest.ts";
+
+import { AiOutlineLoading } from "react-icons/ai";
 
 function Login() {
+
+    const [waiting, setWaiting] = useState<boolean>(false);
 
     const { post } = useRest();
 
@@ -18,6 +22,7 @@ function Login() {
 
     function handleLogin(event: React.MouseEvent<HTMLDivElement>) {
         event.preventDefault()
+        setWaiting(true)
 
         if(username.current.length == 0) {
             setUsernameError("Empty username")
@@ -26,7 +31,10 @@ function Login() {
             setPasswordError("Empty password")
         }
 
-        if(username.current.length == 0 || password.current.length == 0) return;
+        if(username.current.length == 0 || password.current.length == 0) {
+            setWaiting(false)
+            return;
+        }
 
         post('/signin', {
             identifier: username.current,
@@ -55,6 +63,7 @@ function Login() {
                     setUsernameError('Server error')
                     break;
             }
+            setWaiting(false)
         })
     }
 
@@ -63,6 +72,12 @@ function Login() {
             <div className={"login"}>
                 <div className={"login-container"}>
                     <div className={"login-form"}>
+                        {
+                            waiting &&
+                            <div className={"login-waiting"}>
+                                <AiOutlineLoading className='gallery-loading-item' size={60} />
+                            </div>
+                        }
                         <h2>Sign In</h2>
                         <TextInput
                             name={ "Username or email" }
