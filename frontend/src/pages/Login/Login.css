@@ -8,7 +8,7 @@
 }
 
 .login-container {
-    background-color: #eee;
+    background-color: #fefefe;
     width: 60%;
     height: 70%;
     min-height: 30rem;
@@ -21,10 +21,21 @@
 
 .login-container .login-form {
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 4rem;
+    box-sizing: border-box;
+}
+
+.login-container .login-form > * {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .login-container .login-image {
-    background-color: #ddd;
+    background-color: #edf0f5;
     width: 50%;
     display: flex;
     justify-content: center;
