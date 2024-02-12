@@ -9,7 +9,7 @@ function Protected(props: IProtected) {
     const { user } = useUser()
 
     return (
-        user ? props.children : <Navigate to={"/signin"}/>
+        !user ? undefined : user.email !== 'invalid' ? props.children : <Navigate to={"/signin"}/>
     )
 }
 

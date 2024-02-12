@@ -84,7 +84,7 @@ function Login() {
     }
 
     return (
-        user ? <Navigate to={"/"} />
+        user && user.email !== 'invalid' ? <Navigate to={"/"} />
             :
         <Page>
             <div className={"login"}>

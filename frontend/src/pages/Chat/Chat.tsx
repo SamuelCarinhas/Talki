@@ -7,16 +7,18 @@ import {useAuth} from "../../hooks/useAuth.ts";
 import {useUser} from "../../hooks/useUser.ts";
 import ChatMessage from "../../components/ChatMessage/ChatMessage.tsx";
 import {useEffect, useRef, useState} from "react";
+import {useWebSocket} from "../../hooks/useWebSocket.ts";
 
 function Chat() {
 
     useAuth()
     const { user } = useUser()
+    const { sendSocketMessage } = useWebSocket()
     const [messages, setMessages] = useState<IChatMessage[]>([])
     const messagesRef = useRef<IChatMessage[]>([])
 
     function sendMessage(message: string ){
-        console.log(message)
+        sendSocketMessage(message)
         const messageId = `id-${Math.ceil(Math.random()*10000000)}`
         messagesRef.current.push(
             {
@@ -26,8 +28,6 @@ function Chat() {
                 date: new Date()
             }
         )
-        const elem = document.getElementById(messageId);
-        if(elem) elem.scrollTop = elem.scrollHeight;
         setMessages([...messagesRef.current])
     }
 

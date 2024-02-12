@@ -10,7 +10,13 @@ export const useAuth = () => {
     useEffect(() => {
         const user = getItem("user");
         if (user) addUser(JSON.parse(user));
-        else setUser(null)
+        else setUser({
+            email: 'invalid',
+            username: '',
+            accessToken: '',
+            refreshToken: '',
+            role: ''
+        })
     }, []);
 
     const login = (user: IUser) => {

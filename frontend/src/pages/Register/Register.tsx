@@ -95,7 +95,7 @@ function Register() {
     }
 
     return (
-        user ? <Navigate to={"/"} />
+        user && user.email !== 'invalid' ? <Navigate to={"/"} />
             :
         <Page>
             <div className={"register"}>

@@ -13,7 +13,7 @@ function Navbar() {
     const [items, setItems] = useState<INavbarItem[]>([])
 
     useEffect(() => {
-        if(user) {
+        if(user && user.email !== 'invalid') {
             setItems([
                 {
                     name: 'Home',
