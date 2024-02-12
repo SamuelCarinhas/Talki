@@ -1,10 +1,13 @@
 import dotenv from 'dotenv';
+dotenv.config();
+
 import { Server } from "socket.io";
 import { createServer } from 'http';
 
-import logger from './utils/logger.util';
+import TalkiServer from "./server/handler.server";
+import logger from "./utils/logger.util";
 
-dotenv.config();
+
 
 const host = process.env.HOST || 'localhost';
 const port = Number(process.env.PORT) || 8000;
@@ -16,23 +19,16 @@ export const io = new Server(httpServer, {
     }
 });
 
-const users: { [id: string] : any } = {}
+const server = TalkiServer(io)
 
 io.on('connection', (socket) => {
-    socket.on('disconnect', () => {
-        delete users[socket.id]
-    });
+    socket.on('disconnect', server.disconnectUser(socket));
 
-    socket.on('connect-user', (payload) => {
-        console.log(payload)
-        users[socket.id] = payload
-    })
+    socket.on('connect-user', server.connectUser(socket))
 
-    socket.on('message', (payload) => {
-        console.log(payload.message, users[socket.id])
-    })
+    socket.on('message', server.sendMessage(socket))
 })
 
 httpServer.listen(port, () => {
-    console.log(`Server listening on port: ${port}`);
+    logger.info(`Server listening on port: ${port}`);
 });
