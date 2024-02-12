@@ -45,7 +45,7 @@ function GlobalRoutines(props: IGlobalRoutines) {
         const refreshId = setInterval(() => {
             refreshToken()
             console.log('Token refreshed')
-        }, 1000 * 60 * 5)
+        }, 5000)
 
         return () => clearInterval(refreshId)
     }, [user])
