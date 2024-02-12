@@ -12,7 +12,6 @@ const AuthProvider = (props: IAuthProvider) => {
     const { refresh } = useRest()
 
     function refreshToken() {
-        console.log(user)
         if(user && user.email !== 'invalid') {
             refresh('/refresh-token', user.refreshToken)
                 .then(async res => {
@@ -48,7 +47,7 @@ const AuthProvider = (props: IAuthProvider) => {
         }, 5 * 60 * 1000)
 
         return () => clearInterval(refreshId)
-    })
+    }, [])
 
     return (
         <AuthContext.Provider value={{ user: user, setUser }}>

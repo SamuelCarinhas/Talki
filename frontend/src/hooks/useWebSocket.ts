@@ -5,7 +5,7 @@ import IChatMessage from "../components/ChatMessage/IChatMessage.ts";
 
 export const useWebSocket = (receiveMessage: (message: IChatMessage) => void) => {
     const { user } = useUser();
-    const api = 'ws://localhost:8000';
+    const api = import.meta.env.VITE_WEBSOCKET;
     const [socket, setSocket] = useState<Socket | null>(null);
     const [isConnected, setIsConnected] = useState(false);
 

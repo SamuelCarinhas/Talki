@@ -4,8 +4,8 @@ export const useRest = () => {
 
     const { user} = useUser()
 
-    const api = 'https://auth.api.samuelcarinhas.com'
-    const host = "http://localhost:5173"
+    const api = import.meta.env.VITE_API
+    const host = import.meta.env.VITE_HOST
 
     const post = (path: string, body: object) =>
         fetch(`${api}${path}`, {
