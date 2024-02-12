@@ -26,5 +26,14 @@ export const useRest = () => {
             }
         })
 
-    return { host, post, validate };
+    const refresh = (path: string, refreshToken: string) =>
+        fetch(`${api}${path}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': refreshToken
+            }
+        })
+
+    return { host, post, validate, refresh };
 };
