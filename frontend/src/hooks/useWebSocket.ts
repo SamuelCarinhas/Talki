@@ -3,9 +3,9 @@ import { io, Socket } from 'socket.io-client';
 import { useEffect, useState } from "react";
 import IChatMessage from "../components/ChatMessage/IChatMessage.ts";
 
-export const useWebSocket = () => {
+export const useWebSocket = (receiveMessage: (message: IChatMessage) => void) => {
     const { user } = useUser();
-    const api = 'http://localhost:8000';
+    const api = 'ws://localhost:8000';
     const [socket, setSocket] = useState<Socket | null>(null);
     const [isConnected, setIsConnected] = useState(false);
 
@@ -37,7 +37,7 @@ export const useWebSocket = () => {
         };
 
         const handleMessage = (payload: IChatMessage) => {
-            console.log(payload);
+            receiveMessage(payload)
         };
 
         socket.on('connect', handleConnect);
@@ -53,7 +53,6 @@ export const useWebSocket = () => {
 
     const sendSocketMessage = (message: string) => {
         if (user && isConnected && socket) {
-            console.log('emit msg');
             socket.emit('message', {
                 token: user.accessToken,
                 message
